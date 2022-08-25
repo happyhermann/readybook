@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { useRecoilState, useRecoilValue } from "recoil";
 
 import { checkId } from "../atom";
-import { LoginState } from "../LoginState";
+import { LoginState, userState } from "../LoginState";
 
 import axios from "axios";
 
@@ -126,10 +126,15 @@ type IFormData = {
   extraError?: string;
 };
 
+interface IUserState {
+  [Key: string]: string;
+}
+
 export default function Login() {
   let navigate = useNavigate();
 
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(LoginState);
+  const [user, setUser] = useRecoilState<any>(userState);
 
   const [nickname, setNickname] = useState("");
   const [id, setId] = useState("");
@@ -162,11 +167,24 @@ export default function Login() {
     data: data,
   };
 
+  const setUserState = ({ user }: IUserState) => {
+    setUser({
+      nickname: nickname,
+      id: id,
+      password: password,
+    });
+  };
+
+  console.log(user);
+
   const handleValid = ({ id, password }: IFormData) => {
     setId(id);
     setPassword(password);
     axios(config)
       .then((res: any) => {
+        console.log(res.data);
+        setUserState({ user });
+        setNickname(res.data.user.displayName);
         if (res.data.accessToken) {
           setIsLoggedIn(true);
           navigate("/");
@@ -176,6 +194,9 @@ export default function Login() {
         console.log("error");
       });
   };
+
+  // 해결해야 할 것
+  // 로그인 한 정보들 atom persist에 넣어주는 것
 
   console.log(errors.id?.message);
   // +? 왜 ?를 붙이니까 되고 안될 때는 undefined가 뜨지? 옵셔널 체이닝에 대하여

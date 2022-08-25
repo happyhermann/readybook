@@ -13,7 +13,7 @@ import Icon from "@mui/material/Icon";
 import NavBar from "./NavBar";
 
 import { useRecoilState, useRecoilValue } from "recoil";
-import { LoginState } from "../LoginState";
+import { LoginState, userState } from "../LoginState";
 
 // 헤더 컨테이너
 
@@ -96,12 +96,12 @@ const Divider = styled.div`
 export default function Header() {
   const navigate = useNavigate();
   const [logout, setLogout] = useRecoilState(LoginState);
+  const id = useRecoilValue(userState);
 
   console.log(logout);
 
   const [tab, setTab] = useState(2);
   // 탭 컨트롤 state
-  console.log(tab);
 
   let axios = require("axios"); // node.js쓸때 모듈 불러오기
 
@@ -215,9 +215,14 @@ export default function Header() {
             </Lists>
           </ListContainer>
           {logout ? (
-            <span style={{ cursor: "pointer" }} onClick={onLogOut}>
-              로그아웃
-            </span>
+            <User>
+              <span style={{ marginRight: "10px" }}>
+                반갑습니다! {id.id} 님
+              </span>
+              <span style={{ cursor: "pointer" }} onClick={onLogOut}>
+                로그아웃
+              </span>
+            </User>
           ) : (
             <User>
               <Link style={{ marginRight: "15px" }} to="/login">
