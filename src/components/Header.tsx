@@ -12,6 +12,9 @@ import "remixicon/fonts/remixicon.css";
 import Icon from "@mui/material/Icon";
 import NavBar from "./NavBar";
 
+import { useRecoilState, useRecoilValue } from "recoil";
+import { LoginState } from "../LoginState";
+
 // 헤더 컨테이너
 
 const HeaderContainer = styled.header`
@@ -92,10 +95,43 @@ const Divider = styled.div`
 
 export default function Header() {
   const navigate = useNavigate();
+  const [logout, setLogout] = useRecoilState(LoginState);
+
+  console.log(logout);
 
   const [tab, setTab] = useState(2);
   // 탭 컨트롤 state
   console.log(tab);
+
+  let axios = require("axios"); // node.js쓸때 모듈 불러오기
+
+  let config = {
+    method: "post", //통신 방식
+    url: "https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/logout", //서버
+    headers: {
+      // 요청 헤더 설정
+      "Content-Type": "application/json",
+      apikey: process.env.REACT_APP_API_KEY,
+      username: "eeeee",
+    },
+  };
+
+  const isLoggedOut = () => {
+    if (window.confirm("정말 로그아웃하시겠습니까?")) {
+      alert("로그아웃되었습니다.");
+      navigate("/");
+      setLogout(false);
+    } else {
+      alert("취소합니다");
+    }
+  };
+
+  const onLogOut = () => {
+    axios(config).then(function (response: any) {
+      console.log(response.data);
+    });
+    isLoggedOut();
+  };
 
   // const KAKAO_KEY= "a8c449437a2e8ad317c59a7b97b40601";
   // const Kakao = axios.create({
@@ -178,12 +214,18 @@ export default function Header() {
               <Link to="/select">셀렉트</Link>
             </Lists>
           </ListContainer>
-          <User>
-            <Link style={{ marginRight: "15px" }} to="/signup">
-              회원가입
-            </Link>
-            <Link to="">로그인</Link>
-          </User>
+          {logout ? (
+            <span style={{ cursor: "pointer" }} onClick={onLogOut}>
+              로그아웃
+            </span>
+          ) : (
+            <User>
+              <Link style={{ marginRight: "15px" }} to="/login">
+                회원가입
+              </Link>
+              <Link to="/login">로그인</Link>
+            </User>
+          )}
         </Nav>
         <Divider />
       </HeaderContainer>

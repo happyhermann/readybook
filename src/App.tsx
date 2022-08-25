@@ -13,8 +13,10 @@ const GlobalStyle = createGlobalStyle`
         데스크탑 페이지 전체적으로 패딩 좌우 30px 먹혀있음 */
   }
   a {
+    
     text-decoration: none;
     color: inherit;
+    
   }
   li {
     list-style: none;
@@ -24,10 +26,9 @@ const GlobalStyle = createGlobalStyle`
 
 function App() {
   return (
-    
     <>
       <GlobalStyle />
-       <Router />
+      <Router />
     </>
   );
 }

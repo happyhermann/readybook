@@ -11,6 +11,7 @@ export default function Pagination() {
   const [totalPage, setTotalPage] = useState([] as any);
   // never [] 처리법 [] as any
 
+  
   const makePageArray = () => {
     let pageArray = [];
     for (let i = 1; i <= result.length; i++) {

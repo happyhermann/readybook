@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import { useForm } from "react-hook-form";
-import { DefaultValue, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
+
 import { checkId } from "../atom";
+import { LoginState } from "../LoginState";
+
+import axios from "axios";
 
 const SignUpContainer = styled.section`
   background-color: #ebf6ff;
@@ -45,6 +49,7 @@ const SignUpContainer = styled.section`
     display: block;
     width: 100%;
     position: relative;
+    margin-bottom: 20px;
   }
 
   .require {
@@ -113,26 +118,57 @@ type IFormData = {
       message: string;
     };
   };
-
+  nickname: string;
   id: string;
   password: string;
+
   extraError?: string;
 };
 
 export default function SignUp() {
+  const [nickname, setNickname] = useState("");
+  const [id, setId] = useState("");
+  const [password, setPassword] = useState("");
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     setError,
   } = useForm<IFormData>({
-    defaultValues: {
-      id: "@naver.com",
-    },
+    defaultValues: {},
   });
 
-  const handleValid = ({ id, password }: IFormData) => {
-    console.log(id, password);
+  const axios = require("axios");
+
+  const data = JSON.stringify({
+    email: id,
+    password: password,
+    displayName: nickname,
+  });
+
+  const config = {
+    method: "post",
+    url: "https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/signup",
+    headers: {
+      "content-type": "application/json",
+      apikey: "FcKdtJs202204",
+      username: "eeeee",
+    },
+    data: data,
+  };
+
+  const handleValid = ({ nickname, id, password }: IFormData) => {
+    setNickname(nickname);
+    setId(id);
+    setPassword(password);
+    axios(config)
+      .then((res: any) => {
+        console.log(res.data);
+      })
+      .catch((error: any) => {
+        console.log("error");
+      });
   };
 
   console.log(errors.id?.message);
@@ -149,6 +185,18 @@ export default function SignUp() {
             <div className="input_group">
               <label className="input_label">
                 <input
+                  {...register("nickname", {
+                    required: "닉네임을 적어주세요",
+                    maxLength: {
+                      value: 20,
+                      message: "20자 이하여야 합니다",
+                    },
+                  })}
+                  placeholder="닉네임"
+                />
+              </label>
+              <label className="input_label">
+                <input
                   {...register("id", {
                     required: "이메일을 적어주세요",
                     pattern: {
@@ -156,7 +204,7 @@ export default function SignUp() {
                       message: "이메일 형식이 아닙니다.",
                     },
                   })}
-                  placeholder="아이디"
+                  placeholder="이메일"
                 />
               </label>
               <label className="input_label">
@@ -169,16 +217,21 @@ export default function SignUp() {
                     },
                   })}
                   placeholder="비밀번호"
+                  type="password"
                 />
               </label>
               {/* <input {required: '비밀번호를 적어주세요'} placeholder="비밀번호" /> */}
             </div>
-            <span>{errors?.id?.message || errors?.password?.message}</span>
+            <span>
+              {errors?.nickname?.message ||
+                errors?.id?.message ||
+                errors?.password?.message}
+            </span>
             {/*  +? 왜 ?를 붙이니까 되고 안될
             때는 undefined가 뜨지? 옵셔널 체이닝에 대하여 */}
             {/* 이것도 아이디 비밀번호 폼 발리데이션꺼 집어넣기 */}
-            <LoginButton className="login_button">로그인</LoginButton>
-            <SignUpButton>회원가입</SignUpButton>
+            {/* <LoginButton className="login_button">로그인</LoginButton> */}
+            <SignUpButton>회원가입 완료</SignUpButton>
           </form>
         </section>
       </section>
