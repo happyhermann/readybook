@@ -27,7 +27,7 @@
 💻배포 주소
 <hr/>
 
-https://landmarkkorea.netlify.app/
+> https://landmarkkorea.netlify.app/
 
 
 
