@@ -10,7 +10,7 @@
 
 ## 👆프로젝트 메인 페이지
 
-⚙️*개발언어*
+### ⚙️*개발언어*
 <hr/>
 <figure class="third">
 
@@ -21,15 +21,15 @@
  <img src="https://img.shields.io/badge/redux-764ABC?style=for-the-badge&logo=redux&logoColor=white">
 </figure>
 
-📚*라이브러리*
+### 📚*라이브러리*
 <hr/>
 
-💻배포 주소
+#### 💻배포 주소
 > tempo
 
 
 
-🕹프로젝트 과정
+### 🕹프로젝트 과정
 ---------------------------------------
 1. 페이지 구조 
 
