@@ -225,7 +225,7 @@ export default function Header() {
             </User>
           ) : (
             <User>
-              <Link style={{ marginRight: "15px" }} to="/login">
+              <Link style={{ marginRight: "15px" }} to="/signup">
                 회원가입
               </Link>
               <Link to="/login">로그인</Link>
