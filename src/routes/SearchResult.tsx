@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import styled from "styled-components";
@@ -244,6 +244,10 @@ export interface ResultType {
   url: string;
 }
 
+interface IProps {
+  setPostsPerPage: () => void;
+}
+
 export default function SearchedResult() {
   const searchedResult = useRecoilValue<ResultType[]>(searchedAtom);
   //배열일때는 interface뒤에 []
@@ -253,7 +257,20 @@ export default function SearchedResult() {
 
   const inputValue = useRecoilValue<any[]>(inputAtom);
 
-  console.log(searchedResult);
+  const [currentPage, setCurrentPage] = useState<any>(1);
+  const [postsPerPage, setPostsPerPage] = useState<any>(10);
+
+  const indexOfLast = currentPage * postsPerPage;
+  const indexOfFirst = indexOfLast - postsPerPage;
+  const currentPosts = (searchedResult: any) => {
+    let currentPost = [];
+    currentPost = searchedResult.slice(indexOfFirst, indexOfLast);
+    return currentPost;
+  };
+
+  console.log(currentPosts(searchedResult));
+
+  // 여기로 페이지네이션 값 주기 => pagination component로 넘기기
 
   useEffect(() => {
     if (searchedResult.length === 0) {
@@ -324,7 +341,7 @@ export default function SearchedResult() {
 
         {checkValue ? (
           <SearchListContainer>
-            {searchedResult.map((book: ResultType) => (
+            {currentPosts(searchedResult).map((book: ResultType) => (
               <SearchList key={book.url}>
                 <div className="searchImgBox">
                   <img src={book.thumbnail} alt="thumnail" />
@@ -361,7 +378,11 @@ export default function SearchedResult() {
             )}
           </Empty>
         )}
-        <Pagination />
+        <Pagination
+          postsPerPage={postsPerPage}
+          totalPosts={searchedResult.length}
+          paginate={setCurrentPage}
+        />
       </SearchResultMain>
     </SearchResultContainer>
   );

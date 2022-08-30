@@ -98,7 +98,7 @@ const SearchHistory = styled.div`
   opacity: 1;
   transition: opacity 0.2s ease-in-out 0s;
   box-shadow: rgb(0 0 0 / 8%) 5px 5px 10px;
-  z-index: 8000;
+  z-index: 1;
   padding: 10px 15px 0 15px;
 
   .search_recent {
@@ -213,12 +213,11 @@ export default function Search() {
 
   const navigate = useNavigate();
   const [hidden, setHidden] = useState(false);
+  const searched = useRecoilValue(searchedAtom);
   const setSearched = useSetRecoilState<any>(searchedAtom);
 
-  const inputValue = useRecoilValue<any[]>(inputAtom);
-
   // input data recoil
-
+  const inputValue = useRecoilValue<any[]>(inputAtom);
   const setInputValue = useSetRecoilState<any>(inputAtom);
 
   // const [data, setData] = useState<DataType[]>([]);
@@ -250,6 +249,8 @@ export default function Search() {
       .then((res) => setSearched(res.data.documents))
       .catch((err) => console.log(err));
   }, []);
+
+  console.log(searched);
 
   const onSubmit = (e: any) => {
     e.preventDefault();
