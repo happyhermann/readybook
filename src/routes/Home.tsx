@@ -5,6 +5,7 @@ import { useState } from "react";
 //component
 import { Outlet, useNavigate } from "react-router-dom";
 import Category from "../components/Category";
+import Modal from "../components/Modal";
 
 //style
 import styled from "styled-components";
@@ -75,8 +76,6 @@ export default function Home() {
   const [change, setChange] = useState(0);
   const [scrollY, setScrollY] = useState(0);
   const [BtnStatus, setBtnStatus] = useState(false); // 버튼상태
-  // 스크롤 값 저장 상태
-  console.log(change);
 
   const handleFollow = () => {
     setScrollY(window.pageYOffset);
@@ -115,6 +114,12 @@ export default function Home() {
     setBtnStatus(false); // BtnStatus의 값을 false로 바꿈
   };
 
+  const [showModal, setShowModal] = useState(true);
+
+  const handleClose = () => setShowModal(false);
+
+  // 24시간 끄게 하는 거 구현해야함
+
   return (
     <Container>
       <Category />
@@ -149,6 +154,8 @@ export default function Home() {
           </TopScroll>
         )}
       </main>
+
+      {showModal && <Modal />}
     </Container>
   );
 }

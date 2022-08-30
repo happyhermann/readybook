@@ -8,8 +8,11 @@ import { checkId } from "../atom";
 import { LoginState } from "../LoginState";
 
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const SignUpContainer = styled.section`
+  z-index: 9999;
+
   background-color: #ebf6ff;
   width: 100vw;
   height: 100vw;
@@ -126,6 +129,8 @@ type IFormData = {
 };
 
 export default function SignUp() {
+  let navigate = useNavigate();
+
   const [nickname, setNickname] = useState("");
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
@@ -164,7 +169,9 @@ export default function SignUp() {
     setPassword(password);
     axios(config)
       .then((res: any) => {
-        console.log(res.data);
+        if (res.data) {
+          navigate("/login");
+        }
       })
       .catch((error: any) => {
         console.log("error");

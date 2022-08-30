@@ -12,6 +12,8 @@ import { LoginState, userState } from "../LoginState";
 import axios from "axios";
 
 const SignUpContainer = styled.section`
+  z-index: 9999;
+
   background-color: #ebf6ff;
   width: 100vw;
   height: 100vw;
