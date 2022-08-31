@@ -19,10 +19,9 @@ const PageLi = styled.li`
   background-color: whitesmoke;
   font-size: 14px;
   font-weight: 600;
-  padding: 7px 8px;
   margin-right: 5px;
   border-radius: 5px;
-  width: 25px;
+  width: 30px;
   &:hover {
     cursor: pointer;
     color: white;
@@ -35,6 +34,11 @@ const PageLi = styled.li`
 `;
 
 const PageSpan = styled.span`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 30px;
   &:hover::after,
   &:focus::after {
     border-radius: 100%;
