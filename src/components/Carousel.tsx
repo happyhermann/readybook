@@ -109,8 +109,6 @@ export default function Carousel() {
   const [move, setMove] = useState<number>(0);
   const [page, setPage] = useState<number>(1);
 
-  console.log(move, page);
-
   const Back = () => {
     setMove(move + 100);
     setPage(page - 1);

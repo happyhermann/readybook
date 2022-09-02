@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import styled from "styled-components";
-import { searchedAtom, inputAtom, checkAtom } from "../atom";
+import { searchedAtom, inputAtom, checkAtom, filteredAtom } from "../atom";
 import Pagination from "../components/Pagination";
 
 const SearchResultContainer = styled.section`
@@ -268,7 +269,14 @@ export default function SearchedResult() {
     return currentPost;
   };
 
-  console.log(currentPosts(searchedResult));
+  let current = currentPosts(searchedResult);
+  console.log(current);
+
+  const [filter, setFilter] = useRecoilState(filteredAtom);
+
+  useEffect(() => {
+    setFilter(current);
+  });
 
   // 여기로 페이지네이션 값 주기 => pagination component로 넘기기
 
@@ -342,23 +350,25 @@ export default function SearchedResult() {
         {checkValue ? (
           <SearchListContainer>
             {currentPosts(searchedResult).map((book: ResultType) => (
-              <SearchList key={book.url}>
-                <div className="searchImgBox">
-                  <img src={book.thumbnail} alt="thumnail" />
-                </div>
-                <div className="searchDetailsBox">
-                  <h3>{book.title}</h3>
-                  <div>
-                    <p>{book.authors}</p>
-                    <p>{book.translators} 역</p>
-                    <p>{book.publisher}</p>
+              <Link to={`/detail/:id${book.isbn}`}>
+                <SearchList key={book.isbn}>
+                  <div className="searchImgBox">
+                    <img src={book.thumbnail} alt="thumnail" />
                   </div>
-                  <div className="searchPriceBox">
-                    <span>소장</span>
-                    <span>{book.price}</span>
+                  <div className="searchDetailsBox">
+                    <h3>{book.title}</h3>
+                    <div>
+                      <p>{book.authors}</p>
+                      <p>{book.translators} 역</p>
+                      <p>{book.publisher}</p>
+                    </div>
+                    <div className="searchPriceBox">
+                      <span>소장</span>
+                      <span>{book.price}</span>
+                    </div>
                   </div>
-                </div>
-              </SearchList>
+                </SearchList>
+              </Link>
             ))}
 
             {/* 검색결과를 map으로 + 페이지네이션 구현 */}

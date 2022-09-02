@@ -20,6 +20,7 @@ function Router() {
         <Routes>
           <Route path="search" element={<SearchedResult />} />
           <Route path="books" element={<Details />} />
+          <Route path="/detail/:id" element={<Details />} />
           <Route path="/" element={<Home />}>
             <Route path="/" element={<Recommend />} />
             <Route path="event" element={<Event />} />
@@ -29,7 +30,8 @@ function Router() {
           {/* <Route path="/webtoon" element={<div>webtoon</div>} />
           <Route path="/novel" element={<div>novel</div>} />
           <Route path="/select" element={<div>select</div>} /> */}
-        </Routes>{" "}
+        </Routes>
+        xw
         <Footer />
         <Routes>
           <Route path="/signup" element={<SignUp />} />

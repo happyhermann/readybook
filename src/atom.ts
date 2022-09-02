@@ -5,6 +5,11 @@ export const searchedAtom = atom({
   default: [],
 });
 
+export const filteredAtom = atom({
+  key: "filter",
+  default: [],
+});
+
 export const inputAtom = atom({
   key: "input",
   default: [],
