@@ -1,5 +1,5 @@
 import { Book } from "@mui/icons-material";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 
@@ -8,24 +8,37 @@ import { searchedAtom, filterAtom } from "../atom";
 
 const Wrapper = styled.article`
   display: flex;
-  padding: 40px 29px;
+  padding: ${(props) => props.theme.desktopPadding};
 `;
 
 const DetailImgWrapper = styled.div`
-  width: 250px;
+  width: 200px;
 
   .detail_img_box {
     display: block;
     width: 100%;
-    height: 100%;
-    position: relative;
-    background: #d9d9d9;
-
-    img {
-      width: 200px;
-      max-height: 313px;
+     position: relative;
+ 
     }
+ 
+
+  .detail_img {
+    width: 200px;
+    max-height: 313px;
+    vertical-align: middle;
+    outline: 0;
+    padding: 0;
+    color: black/
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    font-size: 14px;
   }
+
   .detail_preview_box {
     margin-top: 12px;
     width: 200px;
@@ -208,8 +221,27 @@ const DetailInfoWrapper = styled.div`
 
     }
 
+  
+
 
   }
+  .nameData {
+    font-size: 13px;
+    color: black;
+    font-weight: 600;
+
+    span {
+      color: rgba(0,0,0,0.5);
+      font-weight: 400;
+
+
+    }
+
+   
+  }
+  .info_publisher {
+       font-weight: 600;
+    }
 
 `;
 
@@ -345,6 +377,52 @@ const ButtonWrap = styled.div`
   }
 `;
 
+const IntroduceBook = styled.article`
+  display: block;
+  margin: 0;
+  padding: 0;
+  color: #666;
+  font-size: 12px;
+  line-height: 1em;
+  letter-spacing: -0.03em;
+  -webkit-font-smoothing: antialiased;
+  padding: ${(props) => props.theme.desktopPadding};
+
+  .introduce_text {
+    margin-bottom: 15px;
+    padding: 10px 0 8px 0;
+    border-bottom: 2px solid #7d8e9e;
+  }
+  .introduce_title {
+    display: inline-block;
+    font-size: 20px;
+    color: #59667a;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+
+  .introduce_content {
+    color: #666;
+    font-size: 12px;
+    line-height: 1em;
+    letter-spacing: -0.03em;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .introduce_p {
+    width: 100%;
+    height: 186px;
+    overflow: hidden;
+    line-height: 1.8em;
+    font-size: 13px;
+    color: #333;
+    word-break: keep-all;
+    letter-spacing: -0.03em;
+
+    word-wrap: break-word;
+  }
+`;
+
 interface ResultType {
   title: string;
   authors: string;
@@ -360,6 +438,7 @@ interface ResultType {
 
 export default function Details(props: any) {
   let { id } = useParams();
+  const [isTrue, setIsTrue] = useState(false);
 
   console.log(id);
 
@@ -370,80 +449,111 @@ export default function Details(props: any) {
   });
   console.log(findBook);
 
-  return (
-    <Wrapper>
-      <DetailImgWrapper>
-        <div className="detail_img_box">
-          <img src={findBook.thumbnail} alt="book thumnail" />
-        </div>
-        <div className="detail_preview_box">
-          <span>미리보기</span>
-        </div>
-      </DetailImgWrapper>
-      <DetailInfoWrapper>
-        <div className="info_title_box">
-          <h3>{findBook.title}</h3>
-        </div>
-        {/* <div className="info_rated_box">
-          <p>평점</p>
-        </div> */}
-        <div className="info_authors_box">
-          <p>
-            <span>{findBook.authors[0]} 저</span>
-          </p>
-        </div>
-        <p className="info_publisher">{findBook.publisher} 출판</p>
-        <div className="info_price_box">
-          <div className="info_price_table">
-            <div>
-              <table className="price_table normal_price_table">
-                <tbody>
-                  <tr>
-                    <th className="price_title" rowSpan={2}>
-                      소장
-                    </th>
+  console.log(findBook.translators[0]);
 
-                    <td className="price_type">전자책 정가</td>
-                    <td className="book_price">
-                      <span className="museo_sans">{findBook.price} 원</span>
-                    </td>
-                  </tr>
-                  <tr className="selling_price_row">
-                    <td className="price_type">판매가</td>
-                    <td className="book_price">
-                      <span className="museo_sans">{findBook.price} 원</span>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
+  // 3초만에 해결 함, 렌더링 될 때 마다 맨 위로 가게 함
+
+  return (
+    <>
+      <Wrapper>
+        <DetailImgWrapper>
+          <div className="detail_img_box">
+            <div className="thumnail_image">
+              <img
+                className="detail_img"
+                src={findBook.thumbnail}
+                alt="book thumnail"
+              />
             </div>
           </div>
+          <div className="detail_preview_box">
+            <span>미리보기</span>
+          </div>
+        </DetailImgWrapper>
+        <DetailInfoWrapper>
+          <div className="info_title_box">
+            <h3>{findBook.title}</h3>
+          </div>
+          {/* <div className="info_rated_box">
+          <p>평점</p>
+        </div> */}
+          <div style={{ marginBottom: "12px" }} className="info_authors_box">
+            <p style={{ display: "flex", flexDirection: "column" }}>
+              <span className="nameData" style={{ marginBottom: "8px" }}>
+                {findBook.authors[0]} <span>저</span>
+              </span>
+              {isTrue && (
+                <span className="nameData">
+                  {findBook.translators[0]} <span>역</span>
+                </span>
+              )}
+            </p>
+          </div>
+          <p className="info_publisher">{findBook.publisher} 출판</p>
+          <div className="info_price_box">
+            <div className="info_price_table">
+              <div>
+                <table className="price_table normal_price_table">
+                  <tbody>
+                    <tr>
+                      <th className="price_title" rowSpan={2}>
+                        소장
+                      </th>
+
+                      <td className="price_type">전자책 정가</td>
+                      <td className="book_price">
+                        <span className="museo_sans">{findBook.price} 원</span>
+                      </td>
+                    </tr>
+                    <tr className="selling_price_row">
+                      <td className="price_type">판매가</td>
+                      <td className="book_price">
+                        <span className="museo_sans">{findBook.price} 원</span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <ButtonWrap>
+            <ul className="info_buttons">
+              <li className="rui_button_item">
+                <button type="button" className="">
+                  <i className="ri-heart-fill"></i>
+                </button>
+              </li>
+              <li className="rui_button_item">
+                <button type="button" className="">
+                  <i className="ri-shopping-cart-2-fill"></i>
+                </button>
+              </li>
+              <li className="rui_button_item">
+                <button type="button" className="">
+                  <i className="ri-gift-fill"></i>
+                </button>
+              </li>
+              <li className="rui_button_item">
+                <button type="button" className="last">
+                  <span className="last_text">소장하기</span>
+                </button>
+              </li>
+            </ul>
+          </ButtonWrap>
+        </DetailInfoWrapper>
+      </Wrapper>
+
+      <IntroduceBook>
+        <div className="introduce_text">
+          <h3 className="introduce_book">작품 소개</h3>
         </div>
-        <ButtonWrap>
-          <ul className="info_buttons">
-            <li className="rui_button_item">
-              <button type="button" className="">
-                <i className="ri-heart-fill"></i>
-              </button>
-            </li>
-            <li className="rui_button_item">
-              <button type="button" className="">
-                <i className="ri-shopping-cart-2-fill"></i>
-              </button>
-            </li>
-            <li className="rui_button_item">
-              <button type="button" className="">
-                <i className="ri-gift-fill"></i>
-              </button>
-            </li>
-            <li className="rui_button_item">
-              <button type="button" className="last">
-                <span className="last_text">소장하기</span>
-              </button>
-            </li>
-          </ul>
-        </ButtonWrap>
-      </DetailInfoWrapper>
-    </Wrapper>
+        <div className="introduce_content">
+          <p className="introduce_p">{findBook.contents}</p>
+        </div>
+      </IntroduceBook>
+    </>
   );
 }
