@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import styled from "styled-components";
-import { searchedAtom, inputAtom, checkAtom, filteredAtom } from "../atom";
+import { searchedAtom, inputAtom, checkAtom, filterAtom } from "../atom";
 import Pagination from "../components/Pagination";
+import Details from "./Details";
 
 const SearchResultContainer = styled.section`
   @media ${(props) => props.theme.mobile} {
@@ -270,13 +271,10 @@ export default function SearchedResult() {
   };
 
   let current = currentPosts(searchedResult);
-  console.log(current);
 
-  const [filter, setFilter] = useRecoilState(filteredAtom);
+  const filter = useSetRecoilState(filterAtom);
 
-  useEffect(() => {
-    setFilter(current);
-  });
+  filter(current);
 
   // 여기로 페이지네이션 값 주기 => pagination component로 넘기기
 
@@ -350,8 +348,8 @@ export default function SearchedResult() {
         {checkValue ? (
           <SearchListContainer>
             {currentPosts(searchedResult).map((book: ResultType) => (
-              <Link to={`/detail/:id${book.isbn}`}>
-                <SearchList key={book.isbn}>
+              <Link to={`/detail/${book.datetime}`}>
+                <SearchList key={book.datetime}>
                   <div className="searchImgBox">
                     <img src={book.thumbnail} alt="thumnail" />
                   </div>

@@ -31,7 +31,6 @@ function Router() {
           <Route path="/novel" element={<div>novel</div>} />
           <Route path="/select" element={<div>select</div>} /> */}
         </Routes>
-        xw
         <Footer />
         <Routes>
           <Route path="/signup" element={<SignUp />} />
