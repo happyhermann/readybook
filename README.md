@@ -91,26 +91,31 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/login
 
  <img src="https://user-images.githubusercontent.com/92570023/188264648-b5e26082-22bf-4215-8d49-ca7092754ec9.gif" width="600px" height="400px" title="" alt="RubberDuck"></img><br/>
 
+ 사용한 API 
  <pre>
  <code>
-  사용한 API 
-  
+ 
   // 책 검색 기본 
   GET /v3/search/book HTTP/1.1
   Host: dapi.kakao.com
   Authorization: KakaoAK ${REST_API_KEY}
   
-  
+   
+ </code>
+ </pre>
+ 
+ <pre>
+ <code>
   // 원하는 검색어와 함께 결과 형식 파라미터를 선택적으로 추가
   curl -v -X GET "https://dapi.kakao.com/v3/search/book?target=title" \
   // 쿼리 파라미터에 검색어 입력 
   --data-urlencode "query=미움받을 용기" \
   // 헤더에 접근 토큰 
   -H "Authorization: KakaoAK ${REST_API_KEY}"
-  
- 
- </code>
+   </code>
  </pre>
+
+  
 
 
 #### 도서 검색 상세페이지 
