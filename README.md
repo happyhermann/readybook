@@ -4,7 +4,7 @@
  
 * 프로젝트 형태: 개인 프로젝트
 * 프로젝트 기간: 2022.08.01 ~ 2022.09.05
-* 프로젝트 API 제공 출처: 카카오 책 검색 API
+* 프로젝트 API 제공 출처: 카카오 책 검색 API (+ 패스트 캠퍼스 제공 핀테크 프로젝트 API)
  
 
 
@@ -24,7 +24,10 @@
 
 ### 📚*라이브러리*
 <hr/>
-<img src="https://img.shields.io/badge/-axios-lightgrey"/>
+<img src="https://img.shields.io/badge/-axios-lightgrey" />
+<img src="https://img.shields.io/badge/-recoil--persist-lightgrey" />
+<img src="https://img.shields.io/badge/-%20remixicon-lightgrey" />
+<img src="https://img.shields.io/badge/-react--router--dom-lightgrey" />
 
 
 #### 💻배포 주소
@@ -36,5 +39,20 @@
 ### 🕹프로젝트 과정
 ---------------------------------------
 1. 페이지 구조 
+
+
+#### 로그인 & 회원가입
+
+
+#### 홈화면
+
+
+
+#### 도서 검색 
+
+
+
+#### 도서 검색 상세페이지 
+
 
 
