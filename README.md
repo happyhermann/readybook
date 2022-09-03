@@ -55,6 +55,13 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/login
 </code>
 </pre>
 
+기능 설명
+로그인&회원가입 모든 값을 입력하지 않으면 등록 버튼 활성화X
+
+이메일 값은 반드시 "@"가 포함되어야 함.
+
+비밀번호는 8자리 이상, 비밀번호확인란과 값이 일치해야한다.
+
 
 
 #### 로그인 & 회원가입
