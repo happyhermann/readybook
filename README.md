@@ -47,6 +47,9 @@
 #### 로그인 & 회원가입
 
  <img src="https://user-images.githubusercontent.com/92570023/188264544-1d087f64-890d-404f-b622-c33935cf280b.gif" width="600px" height="400px" title="" alt="RubberDuck"></img><br/>
+ 
+ 
+ 
 
 
 사용한 API
@@ -82,7 +85,11 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/login
 #### 홈화면
 
 
+
+
 #### 도서 검색 
+
+ <img src="https://user-images.githubusercontent.com/92570023/188264648-b5e26082-22bf-4215-8d49-ca7092754ec9.gif" width="600px" height="400px" title="" alt="RubberDuck"></img><br/>
 
 
 
