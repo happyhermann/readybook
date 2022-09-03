@@ -114,6 +114,8 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/login
  
  기능 설명
  > 검색창에 키워드를 입력하면 입력값과 관련된 도서 정보 데이터를 받아옴
+
+ > 사용자가 입력한 검색값은 최근 검색어 창에 내림차순으로 정렬되고 개별 검색어는 삭제 가능
  
  > 받아온 도서 정보는 각 페이지당 10개씩 나열됨 
  
