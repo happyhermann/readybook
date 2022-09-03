@@ -43,7 +43,17 @@
 
 #### 반응형 마크업
 
-<pre><code>{code}123</code></pre>
+<pre>
+<code>
+// 로그인
+curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/login
+  \ -X 'POST'
+
+// 회원가입
+curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/login
+  \ -X 'POST'
+</code>
+</pre>
 
 
 
