@@ -111,6 +111,12 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/login
   -H "Authorization: KakaoAK ${REST_API_KEY}"
    </code>
  </pre>
+ 
+ 기능 설명
+ > 검색창에 키워드를 입력하면 입력값과 관련된 도서 정보 데이터를 받아옴
+ > 받아온 도서 정보는 각 페이지당 10개씩 나열됨 
+ > 입력값에 해당하는 도서가 없을 경우 '검색결과 없습니다'라는 배너 사용자에게 보여줌
+ > 
 
   
 
