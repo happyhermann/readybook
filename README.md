@@ -94,13 +94,10 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/login
  사용한 API 
  <pre>
  <code>
- 
   // 책 검색 기본 
   GET /v3/search/book HTTP/1.1
   Host: dapi.kakao.com
   Authorization: KakaoAK ${REST_API_KEY}
-  
-   
  </code>
  </pre>
  
