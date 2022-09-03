@@ -91,6 +91,14 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/login
 
  <img src="https://user-images.githubusercontent.com/92570023/188264648-b5e26082-22bf-4215-8d49-ca7092754ec9.gif" width="600px" height="400px" title="" alt="RubberDuck"></img><br/>
 
+<pre>
+<code>
+사용한 API 
+GET /v3/search/book HTTP/1.1
+Host: dapi.kakao.com
+Authorization: KakaoAK ${REST_API_KEY}
+</pre>
+</code>
 
 
 #### 도서 검색 상세페이지 
