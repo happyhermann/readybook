@@ -46,7 +46,7 @@
 
 #### 로그인 & 회원가입
 
- <img src="https://user-images.githubusercontent.com/92570023/188264447-be74af14-7d56-4ef4-85af-625ae3e1bd97.gif" width="450px" height="300px" title="" alt="RubberDuck"></img><br/>
+ <img src="https://user-images.githubusercontent.com/92570023/188264544-1d087f64-890d-404f-b622-c33935cf280b.gif" width="450px" height="300px" title="" alt="RubberDuck"></img><br/>
 
 
 사용한 API
