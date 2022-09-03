@@ -46,8 +46,7 @@
 
 #### 로그인 & 회원가입
 
-https://user-images.githubusercontent.com/92570023/188264447-be74af14-7d56-4ef4-85af-625ae3e1bd97.gif
-<img src="/path/to/img.jpg" width="450px" height="300px" title="px(픽셀) 크기 설정" alt="RubberDuck"></img><br/>
+ <img src="https://user-images.githubusercontent.com/92570023/188264447-be74af14-7d56-4ef4-85af-625ae3e1bd97.gif" width="450px" height="300px" title="" alt="RubberDuck"></img><br/>
 
 
 사용한 API
