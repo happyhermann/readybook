@@ -8,12 +8,48 @@ import { searchedAtom, filterAtom } from "../atom";
 
 const Wrapper = styled.article`
   display: flex;
+  @media ${(props) => props.theme.mobile} {
+    padding: 12px;
+    width: 100%;
+  }
   padding: ${(props) => props.theme.desktopPadding};
 `;
 
 const DetailImgWrapper = styled.div`
-  width: 200px;
 
+@media ${(props) => props.theme.mobile} {
+  padding: 12px;
+  font-size: 12px;
+  .detail_img {
+    width: 200px;
+    max-height: 313px;
+    vertical-align: middle;
+    outline: 0;
+    padding: 0;
+    color: black/
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    font-size: 14px;
+  }
+  
+   }
+
+   @media ${(props) => props.theme.desktop} {
+    padding: ${(props) => props.theme.desktopPadding};
+    width: 200px;
+
+
+   }
+
+
+ 
+
+ 
   .detail_img_box {
     display: block;
     width: 100%;
@@ -90,9 +126,33 @@ const DetailImgWrapper = styled.div`
 
 const DetailInfoWrapper = styled.div`
   width: 500px;
-  padding: 0 30px;
+  @media ${(props) => props.theme.mobile} {
+    padding: 30px;
+    padding-left: 5;
 
-  .info_title_box {
+    font-size: 13px;
+    .info_title_box {
+    h3 {
+      font-size: 15px;
+      line-height: 1.3em;
+      color: #333;
+      font-weight: 700;
+      word-break: keep-all;
+      word-wrap: break-word;
+      margin-bottom: 20px;
+     }
+   
+  }
+ 
+
+  }
+
+ 
+  @media ${(props) => props.theme.desktop} {
+    padding: 25px 100px;
+  
+ 
+    .info_title_box {
     h3 {
       font-size: 30px;
       line-height: 1.3em;
@@ -103,6 +163,10 @@ const DetailInfoWrapper = styled.div`
       margin-bottom: 20px;
      }
   }
+  }
+
+
+
   .info_authors_box {
     color: #666;
     font-size: 12px;
@@ -246,6 +310,8 @@ const DetailInfoWrapper = styled.div`
 `;
 
 const ButtonWrap = styled.div`
+  display: flex;
+  justify-content: flex-end;
   overflow: auto;
   margin-top: 15px;
   color: #666;
@@ -313,7 +379,6 @@ const ButtonWrap = styled.div`
   }
 
   span {
-    speak: none;
     font-weight: 400;
     font-style: normal;
     text-decoration: inherit;
@@ -378,6 +443,9 @@ const ButtonWrap = styled.div`
 `;
 
 const IntroduceBook = styled.article`
+  @media ${(props) => props.theme.mobile} {
+    padding: 10px;
+  }
   display: block;
   margin: 0;
   padding: 0;
@@ -386,7 +454,10 @@ const IntroduceBook = styled.article`
   line-height: 1em;
   letter-spacing: -0.03em;
   -webkit-font-smoothing: antialiased;
-  padding: ${(props) => props.theme.desktopPadding};
+
+  @media ${(props) => props.theme.desktop} {
+    padding: ${(props) => props.theme.desktopPadding};
+  }
 
   .introduce_text {
     margin-bottom: 15px;
@@ -423,6 +494,86 @@ const IntroduceBook = styled.article`
   }
 `;
 
+const RankAside = styled.aside`
+  @media ${(props) => props.theme.mobile} {
+    display: none;
+  }
+
+  display: table-cell;
+  width: 207px;
+  background: 0 0;
+  vertical-align: top;
+  border-left: 1px solid #e6e8eb;
+
+  img {
+    margin-bottom: 25px;
+  }
+
+  .aside_best {
+    padding: 0 18px;
+    margin-bottom: 45px;
+
+    h2 {
+      line-height: 1.5em;
+      color: #333;
+      font-weight: 700;
+      font-size: 12px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 3px;
+    }
+    li {
+      padding: 5px 0;
+      border-bottom: 1px solid #ddd;
+      position: relative;
+    }
+
+    a {
+      display: table;
+      table-layout: fixed;
+      height: 19px;
+      width: 100%;
+      overflow: hidden;
+    }
+    .rank {
+      width: 33px;
+      color: #e64938;
+
+      font-weight: 700;
+      font-size: 12px;
+    }
+
+    .rank_title {
+      width: 138px;
+      font-size: 12px;
+      line-height: 1.5em;
+      display: table-cell;
+    }
+    .rank_title_title {
+      height: 19px;
+      font-weight: 400;
+      white-space: nowrap;
+      color: #666;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: block;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      word-wrap: break-word;
+      word-break: keep-all;
+      white-space: normal;
+    }
+    .rank_title_fadeout {
+      display: block;
+      position: absolute;
+      width: 20%;
+      height: 100%;
+      right: 0;
+      top: 0;
+    }
+  }
+`;
+
 interface ResultType {
   title: string;
   authors: string;
@@ -437,8 +588,22 @@ interface ResultType {
 }
 
 export default function Details(props: any) {
+  const mockUp = [
+    "사피엔스",
+    "해리포터",
+    "이방인",
+    "자본론",
+    "삶으로 다시 떠오르기",
+    "장자",
+    "선악의 저편",
+    "아비투스",
+    "코스모스",
+    "자유로부터의 도피",
+  ];
+
   let { id } = useParams();
   const [isTrue, setIsTrue] = useState(false);
+  console.log(mockUp);
 
   console.log(id);
 
@@ -450,7 +615,6 @@ export default function Details(props: any) {
   console.log(findBook);
 
   console.log(findBook.translators[0]);
-
   useEffect(() => {
     window.scrollTo(0, 0);
   });
@@ -459,91 +623,216 @@ export default function Details(props: any) {
   return (
     <>
       <Wrapper>
-        <DetailImgWrapper>
-          <div className="detail_img_box">
-            <div className="thumnail_image">
-              <img
-                className="detail_img"
-                src={findBook.thumbnail}
-                alt="book thumnail"
-              />
-            </div>
-          </div>
-          <div className="detail_preview_box">
-            <span>미리보기</span>
-          </div>
-        </DetailImgWrapper>
-        <DetailInfoWrapper>
-          <div className="info_title_box">
-            <h3>{findBook.title}</h3>
-          </div>
-          {/* <div className="info_rated_box">
-          <p>평점</p>
-        </div> */}
-          <div style={{ marginBottom: "12px" }} className="info_authors_box">
-            <p style={{ display: "flex", flexDirection: "column" }}>
-              <span className="nameData" style={{ marginBottom: "8px" }}>
-                {findBook.authors[0]} <span>저</span>
-              </span>
-              {isTrue && (
-                <span className="nameData">
-                  {findBook.translators[0]} <span>역</span>
-                </span>
-              )}
-            </p>
-          </div>
-          <p className="info_publisher">{findBook.publisher} 출판</p>
-          <div className="info_price_box">
-            <div className="info_price_table">
-              <div>
-                <table className="price_table normal_price_table">
-                  <tbody>
-                    <tr>
-                      <th className="price_title" rowSpan={2}>
-                        소장
-                      </th>
-
-                      <td className="price_type">전자책 정가</td>
-                      <td className="book_price">
-                        <span className="museo_sans">{findBook.price} 원</span>
-                      </td>
-                    </tr>
-                    <tr className="selling_price_row">
-                      <td className="price_type">판매가</td>
-                      <td className="book_price">
-                        <span className="museo_sans">{findBook.price} 원</span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+        <>
+          <DetailImgWrapper>
+            <div className="detail_img_box">
+              <div className="thumnail_image">
+                <img
+                  className="detail_img"
+                  src={findBook.thumbnail}
+                  alt="book thumnail"
+                />
               </div>
             </div>
-          </div>
-          <ButtonWrap>
-            <ul className="info_buttons">
-              <li className="rui_button_item">
-                <button type="button" className="">
-                  <i className="ri-heart-fill"></i>
-                </button>
-              </li>
-              <li className="rui_button_item">
-                <button type="button" className="">
-                  <i className="ri-shopping-cart-2-fill"></i>
-                </button>
-              </li>
-              <li className="rui_button_item">
-                <button type="button" className="">
-                  <i className="ri-gift-fill"></i>
-                </button>
-              </li>
-              <li className="rui_button_item">
-                <button type="button" className="last">
+            <div className="detail_preview_box">
+              <span>미리보기</span>
+            </div>
+          </DetailImgWrapper>
+          <DetailInfoWrapper>
+            <div className="info_title_box">
+              <h3>{findBook.title}</h3>
+            </div>
+            {/* <div className="info_rated_box">
+          <p>평점</p>
+        </div> */}
+            <div style={{ marginBottom: "12px" }} className="info_authors_box">
+              <p style={{ display: "flex", flexDirection: "column" }}>
+                <span className="nameData" style={{ marginBottom: "8px" }}>
+                  {findBook.authors[0]} <span>저</span>
+                </span>
+                {isTrue && (
+                  <span className="nameData">
+                    {findBook.translators[0]} <span>역</span>
+                  </span>
+                )}
+              </p>
+            </div>
+            <p className="info_publisher">{findBook.publisher} 출판</p>
+            <div className="info_price_box">
+              <div className="info_price_table">
+                <div>
+                  <table className="price_table normal_price_table">
+                    <tbody>
+                      <tr>
+                        <th className="price_title" rowSpan={2}>
+                          소장
+                        </th>
+
+                        <td className="price_type">전자책 정가</td>
+                        <td className="book_price">
+                          <span className="museo_sans">
+                            {findBook.price} 원
+                          </span>
+                        </td>
+                      </tr>
+                      <tr className="selling_price_row">
+                        <td className="price_type">판매가</td>
+                        <td className="book_price">
+                          <span className="museo_sans">
+                            {findBook.price} 원
+                          </span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <ButtonWrap>
+              <ul className="info_buttons">
+                <li className="rui_button_item">
+                  <button type="button" className="">
+                    <i className="ri-heart-fill"></i>
+                  </button>
+                </li>
+                <li className="rui_button_item">
+                  <button type="button" className="">
+                    <i className="ri-shopping-cart-2-fill"></i>
+                  </button>
+                </li>
+                <li className="rui_button_item">
+                  <button type="button" className="">
+                    <i className="ri-gift-fill"></i>
+                  </button>
+                </li>
+                <li className="rui_button_item">
                   <span className="last_text">소장하기</span>
-                </button>
-              </li>
-            </ul>
-          </ButtonWrap>
-        </DetailInfoWrapper>
+                </li>
+              </ul>
+            </ButtonWrap>
+          </DetailInfoWrapper>
+          <RankAside>
+            <div className="aside_banner">
+              <img
+                style={{ width: "207px", display: "block" }}
+                src="https://active.ridibooks.com/ridibooks_banner_book_detail/20220831083433_1661902473711.jpg"
+                alt="레디 이벤트"
+              />
+            </div>
+            <div className="aside_best">
+              <h2 className="aside_contents_title">베스트 셀러</h2>
+              <ul className="aside_contents_ul">
+                <li className="aside_contents_li">
+                  <a href="#">
+                    <span className="rank">1위</span>
+                    <span className="rank_title">
+                      <span className="rank_title_title">사피엔스</span>
+                      <span className="rank_fadeout"></span>
+                    </span>
+                  </a>
+                </li>
+                <li className="aside_contents_li">
+                  <a href="#">
+                    <span className="rank">1위</span>
+                    <span className="rank_title">
+                      <span className="rank_title_title">
+                        내가 틀릴 수도 있습니다
+                      </span>
+                      <span className="rank_fadeout"></span>
+                    </span>
+                  </a>
+                </li>
+                <li className="aside_contents_li">
+                  <a href="#">
+                    <span className="rank">2위</span>
+                    <span className="rank_title">
+                      <span className="rank_title_title">이방인</span>
+                      <span className="rank_fadeout"></span>
+                    </span>
+                  </a>
+                </li>
+                <li className="aside_contents_li">
+                  <a href="#">
+                    <span className="rank">3위</span>
+                    <span className="rank_title">
+                      <span className="rank_title_title">크눌프</span>
+                      <span className="rank_fadeout"></span>
+                    </span>
+                  </a>
+                </li>
+                <li className="aside_contents_li">
+                  <a href="#">
+                    <span className="rank">4위</span>
+                    <span className="rank_title">
+                      <span className="rank_title_title">코스모스</span>
+                      <span className="rank_fadeout"></span>
+                    </span>
+                  </a>
+                </li>
+                <li className="aside_contents_li">
+                  <a href="#">
+                    <span className="rank">5위</span>
+                    <span className="rank_title">
+                      <span className="rank_title_title">
+                        하마터면 열심히 살 뻔 했다
+                      </span>
+                      <span className="rank_fadeout"></span>
+                    </span>
+                  </a>
+                </li>
+                <li className="aside_contents_li">
+                  <a href="#">
+                    <span className="rank">6위</span>
+                    <span className="rank_title">
+                      <span className="rank_title_title">
+                        12가지 인생의 법칙
+                      </span>
+                      <span className="rank_fadeout"></span>
+                    </span>
+                  </a>
+                </li>
+                <li className="aside_contents_li">
+                  <a href="#">
+                    <span className="rank">7위</span>
+                    <span className="rank_title">
+                      <span className="rank_title_title">
+                        장하준의 경제학 특강
+                      </span>
+                      <span className="rank_fadeout"></span>
+                    </span>
+                  </a>
+                </li>
+                <li className="aside_contents_li">
+                  <a href="#">
+                    <span className="rank">8위</span>
+                    <span className="rank_title">
+                      <span className="rank_title_title">어떻게 살 것인가</span>
+                      <span className="rank_fadeout"></span>
+                    </span>
+                  </a>
+                </li>
+                <li className="aside_contents_li">
+                  <a href="#">
+                    <span className="rank">9위</span>
+                    <span className="rank_title">
+                      <span className="rank_title_title">리액트 입문</span>
+                      <span className="rank_fadeout"></span>
+                    </span>
+                  </a>
+                </li>
+                <li className="aside_contents_li">
+                  <a href="#">
+                    <span className="rank">10위</span>
+                    <span className="rank_title">
+                      <span className="rank_title_title">우승은 맨유</span>
+                      <span className="rank_fadeout"></span>
+                    </span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </RankAside>
+        </>
       </Wrapper>
 
       <IntroduceBook>
