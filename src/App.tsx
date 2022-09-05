@@ -12,6 +12,12 @@ const GlobalStyle = createGlobalStyle`
     /*  모바일 : 16px
         데스크탑 페이지 전체적으로 패딩 좌우 30px 먹혀있음 */
   }
+  button {
+    -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  }
   a {
     
     text-decoration: none;
