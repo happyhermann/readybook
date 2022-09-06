@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 
 import "remixicon/fonts/remixicon.css";
 import Carousel from "../components/Carousel";
+import BestSellers from "../components/BestSellers";
+import PoliticBest from "../components/PoliticBest";
 
 const RecommendBox = styled.div`
   position: relative;
@@ -244,7 +246,7 @@ export default function Recommend() {
         </ButtonLists>
       </RecommendBox>
       <MainWrapper>
-        <Slider className="daily_ready">
+        {/* <Slider className="daily_ready">
           <div>
             <h3 className="daily_text">오늘 레디의 발견</h3>
           </div>
@@ -267,7 +269,7 @@ export default function Recommend() {
                     whileHover="hover"
                     transition={{ type: "tween" }}
                   >
-                    <img src={a.img} alt="book image" />
+                    <img src={a.img} alt="imgs" />
                     <Info>
                       <h4 className="daily_title">{a.title}</h4>
                       <p className="daily_authors">{a.author} 저</p>
@@ -280,7 +282,9 @@ export default function Recommend() {
               />
             </Row>
           </AnimatePresence>
-        </Slider>
+        </Slider> */}
+        <BestSellers />
+        <PoliticBest />
       </MainWrapper>
     </>
   );
