@@ -3,6 +3,11 @@ import styled from "styled-components";
 
 const Arrow = styled.div`
   margin-top: 10px;
+  position: absolute;
+  z-index: 1;
+  top: 25%;
+  right: 4.5%;
+  transform: translate(4px);
   next-arrow {
     display: flex;
     align-items: center;
@@ -10,13 +15,30 @@ const Arrow = styled.div`
   }
 
   .right {
-    font-size: 18px;
     cursor: pointer;
+    font-size: 30px;
+    cursor: pointer;
+
+    position: absolute;
+    pointer-events: auto;
+    right: -45px;
+    &:hover {
+      color: gray;
+      transition: 0.3s ease-in;
+    }
   }
 
-  .next {
-    font-size: 15px;
-    line-height: -20px;
+  @media ${(props) => props.theme.desktop} {
+    .right {
+      font-size: 35px;
+      right: -65px;
+    }
+  }
+  @media ${(props) => props.theme.fullSize} {
+    .right {
+      font-size: 40px;
+      right: -55px;
+    }
   }
 `;
 
@@ -31,7 +53,6 @@ export default function NextArrow({ onClick }: NextArrowProps) {
     <Arrow>
       <div className="next-arrow" onClick={onClick}>
         <i className="ri-arrow-right-s-line  right"></i>
-        <span className="next">Next</span>
       </div>
     </Arrow>
   );

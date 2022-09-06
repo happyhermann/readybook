@@ -12,6 +12,7 @@ import NextArrow from "./NextArrow";
 import { dataType } from "./BestSellers";
 
 const Politics = styled.div`
+  position: relative;
   .best_title {
     font-size: 18px;
     font-weight: 600;
@@ -44,6 +45,15 @@ const Politics = styled.div`
       text-align: left;
     }
 
+    @media ${(props) => props.theme.mobile} and (max-width: 800px) {
+      .politic_list_img_box {
+        width: 85px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        cursor: pointer;
+      }
+    }
+
     @media ${(props) => props.theme.desktop} {
       .politic_list_img_box {
         width: 130px;
@@ -52,7 +62,7 @@ const Politics = styled.div`
         cursor: pointer;
       }
       h3 {
-        font-size: 15px;
+        font-size: 13px;
         margin-bottom: 8px;
         cursor: pointer;
       }
@@ -86,6 +96,7 @@ export default function PoliticBest() {
   const settings = {
     speed: 500,
     slidesToShow: 5,
+    // 모바일일 때는 5개만 보여주는 걸로 리팩토링 하기
     slidesToScroll: 5,
     nextArrow: <NextArrow />,
   };

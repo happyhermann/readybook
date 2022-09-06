@@ -57,6 +57,15 @@ export const BestSeller = styled.div`
       cursor: pointer;
 
     }
+
+    @media ${(props) => props.theme.mobile} and (max-width: 800px) {
+      .politic_list_img_box {
+        width: 85px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        cursor: pointer;
+      }
+    }
     @media ${(props) => props.theme.desktop} {
       .novel_img_box {
         width: 130px;
@@ -66,7 +75,7 @@ export const BestSeller = styled.div`
       h3 {
         width: 80%;
 
-        font-size: 15px;
+        font-size: 13px;
         margin-bottom: 8px;
       }
       p {
