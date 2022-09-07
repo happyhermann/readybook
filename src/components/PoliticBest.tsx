@@ -59,7 +59,7 @@ const Politics = styled.div`
 
     @media ${(props) => props.theme.desktop} {
       .politic_list_img_box {
-        width: 130px;
+        width: 95px;
         margin-top: 10px;
         margin-bottom: 10px;
         cursor: pointer;
@@ -77,7 +77,7 @@ const Politics = styled.div`
 
     @media ${(props) => props.theme.fullSize} {
       .politic_list_img_box {
-        width: 160px;
+        width: 110px;
         margin-top: 10px;
         margin-bottom: 10px;
       }
@@ -102,6 +102,28 @@ export default function PoliticBest() {
     // 모바일일 때는 5개만 보여주는 걸로 리팩토링 하기
     slidesToScroll: 5,
     nextArrow: <NextArrow />,
+
+    responsive: [
+      // 반응형 웹 구현 옵션
+      {
+        breakpoint: 1920,
+        settings: {
+          slidesToShow: 5,
+        },
+      },
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 5,
+        },
+      },
+      {
+        breakpoint: 770,
+        settings: {
+          slidesToShow: 4,
+        },
+      },
+    ],
   };
 
   useEffect(() => {

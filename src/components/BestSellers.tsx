@@ -68,16 +68,17 @@ margin-bottom  : 35px;
     @media ${(props) => props.theme.mobile} and (max-width: 800px) {
       .politic_list_img_box {
         width: 85px;
-        margin-top: 10px;
+         margin-top: 10px;
         margin-bottom: 10px;
         cursor: pointer;
       }
     }
     @media ${(props) => props.theme.desktop} {
       .novel_img_box {
-        width: 130px;
+        width: 95px;
         margin-top: 10px;
         margin-bottom: 10px;
+        
       }
       h3 {
         width: 80%;
@@ -92,7 +93,7 @@ margin-bottom  : 35px;
 
     @media ${(props) => props.theme.fullSize} {
       .novel_img_box {
-        width: 160px;
+        width: 110px;
         margin-top: 10px;
         margin-bottom: 10px;
       }
@@ -111,7 +112,7 @@ export default function BestSellers() {
 
   const [bestSeller, setBestSeller] = useState<dataType[]>([]);
   const randomValue = novelArray[Math.floor(Math.random() * novelArray.length)];
-  console.log(randomValue);
+  // console.log(randomValue);
 
   useEffect(() => {
     axios
@@ -142,13 +143,33 @@ export default function BestSellers() {
       .catch((err) => console.log(err));
   }, []);
 
-  console.log(bestSeller);
-
   const settings = {
     speed: 500,
-    slidesToShow: 5,
+    slidesToShow: 3,
     slidesToScroll: 5,
     nextArrow: <NextArrow />,
+
+    responsive: [
+      // 반응형 웹 구현 옵션
+      {
+        breakpoint: 1920,
+        settings: {
+          slidesToShow: 5,
+        },
+      },
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 5,
+        },
+      },
+      {
+        breakpoint: 770,
+        settings: {
+          slidesToShow: 4,
+        },
+      },
+    ],
   };
 
   return (
