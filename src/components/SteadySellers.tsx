@@ -28,14 +28,6 @@ const SteadySeller = styled.div`
     margin-bottom: 10px;
   }
 
-  align-items: stretch;
-
-  .grid_test {
-    display: grid;
-    grid-template-columns: repeat(2, 2fr);
-    gap: 10px;
-  }
-
   // 스타일드 컴포넌트로 해당 width 값이 넘어 갔을 때
   // repeat를 3으로 늘리고 4로 늘려야하나?
 
@@ -49,14 +41,21 @@ const SteadySeller = styled.div`
   // 이것은 어떻게 만들 것인가? 라이브러리를 쓸 것인가? 아니면 순수 JS와 리액트 문법으로
   // 구현해야하눈가?
 
-  .item {
+  .item_container {
     display: flex;
     align-items: center;
+    padding: 10px;
+  }
+
+  .item {
     cursor: pointer;
+    margin-bottom: 10px;
+
     img {
       width: 50px;
       margin-right: 30px;
     }
+
     .item_texts {
       h3 {
         font-size: 12px;
@@ -77,6 +76,24 @@ const SteadySeller = styled.div`
         }
         span {
           opacity: 0.6;
+        }
+      }
+    }
+  }
+
+  @media ${(props) => props.theme.desktop} {
+    .item {
+      img {
+        width: 80px;
+      }
+      .item_texts {
+        h3 {
+          font-size: 13px;
+          margin-bottom: 8px;
+        }
+        p {
+          font-size: 11px;
+          margin-bottom: 3px;
         }
       }
     }
@@ -112,45 +129,13 @@ export default function SteadySellers() {
     reviewRandomArray.push(reviewRandom);
   }
 
-  // useEffect(() => {
-  //   axios
-  //     .get(SEARCH_URL, {
-  //       params: {
-  //         // 검색어
-  //         query: "사회",
-  //         size: 18,
-
-  //         // 필수아닌 검색 조건들
-
-  //         //결과 문서 정렬 방식
-  //         //sort	String	, accuracy(정확도순) 또는 latest(발간일순), 기본값 accuracy
-
-  //         //결과 페이지 번호
-  //         //page	Integer	, 1~50 사이의 값, 기본 값 1
-
-  //         //한 페이지에 보여질 문서 수
-  //         //size	Integer	, 1~50 사이의 값, 기본 값 10
-
-  //         //target	String	검색 필드 제한
-  //         //사용 가능한 값: title(제목), isbn (ISBN), publisher(출판사), person(인명)
-  //       },
-  //       headers: {
-  //         Authorization: AUTH,
-  //       },
-  //     })
-  //     .then((res) => setSteady(res.data.documents))
-  //     .catch((err) => console.log(err));
-  // }, []);
-
-  // axios 요청 여러개 해서 하나의 배열로 사용하게 하는 것
-
   useEffect(() => {
     axios
       .all([
         axios.get(SEARCH_URL, {
           params: {
             query: "사회",
-            size: 6,
+            size: 3,
           },
           headers: {
             Authorization: AUTH,
@@ -159,7 +144,7 @@ export default function SteadySellers() {
         axios.get(SEARCH_URL, {
           params: {
             query: "인문",
-            size: 6,
+            size: 3,
           },
           headers: {
             Authorization: AUTH,
@@ -168,7 +153,34 @@ export default function SteadySellers() {
         axios.get(SEARCH_URL, {
           params: {
             query: "소설",
-            size: 6,
+            size: 3,
+          },
+          headers: {
+            Authorization: AUTH,
+          },
+        }),
+        axios.get(SEARCH_URL, {
+          params: {
+            query: "톨스토이",
+            size: 3,
+          },
+          headers: {
+            Authorization: AUTH,
+          },
+        }),
+        axios.get(SEARCH_URL, {
+          params: {
+            query: "역사",
+            size: 3,
+          },
+          headers: {
+            Authorization: AUTH,
+          },
+        }),
+        axios.get(SEARCH_URL, {
+          params: {
+            query: "미니멀리즘",
+            size: 3,
           },
           headers: {
             Authorization: AUTH,
@@ -176,7 +188,7 @@ export default function SteadySellers() {
         }),
       ])
       .then(
-        axios.spread((res1, res2, res3) => {
+        axios.spread((res1, res2, res3, res4, res5, res6) => {
           // console.log(res1, res2);
 
           console.log(
@@ -184,11 +196,21 @@ export default function SteadySellers() {
             res2.data.documents,
             res3.data.documents
           );
-          const test1 = res1.data.documents;
-          const test2 = res2.data.documents;
-          const test3 = res3.data.documents;
+          const keyword1 = res1.data.documents;
+          const keyword2 = res2.data.documents;
+          const keyword3 = res3.data.documents;
+          const keyword4 = res4.data.documents;
+          const keyword5 = res5.data.documents;
+          const keyword6 = res6.data.documents;
 
-          const all = [...test1, ...test2, ...test3];
+          const all = [
+            ...keyword1,
+            ...keyword2,
+            ...keyword3,
+            ...keyword4,
+            ...keyword5,
+            ...keyword6,
+          ];
           setSteady(all);
 
           // const res1 = res1.data;
@@ -206,26 +228,27 @@ export default function SteadySellers() {
     infinite: true,
     speed: 500,
     slideToShow: 3,
+    rows: 3,
+    slidesPerRow: 2,
+    NextArrow: <NextArrow />,
 
     responsive: [
       // 반응형 웹 구현 옵션
+
       {
-        breakpoint: 1920,
+        breakpoint: 1900,
         settings: {
-          slidesToShow: 6,
+          slideToShow: 9,
+          slidesPerRow: 3,
+          rows: 3,
         },
       },
       {
-        breakpoint: 1200,
+        breakpoint: 900,
         settings: {
-          slidesToShow: 6,
-        },
-      },
-      {
-        breakpoint: 770,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 3,
+          slideToShow: 6,
+          slidesPerRow: 2,
+          rows: 3,
         },
       },
     ],
@@ -234,41 +257,34 @@ export default function SteadySellers() {
   return (
     <SteadySeller>
       <h3 className="steady_title">스테디 셀러</h3>
-      {/* <Slider {...settings}>
-        {steady.map((test: dataType) => (
-          <ul className="steady_list" key={test.datetime}>
-            <li className="li">
-              <div className="steady_img_box">
-                <img
-                  className="steady_img"
-                  src={test.thumbnail}
-                  alt="thumnail"
-                />
+      <Slider {...settings}>
+        {steady.map((books: dataType, index) => (
+          <div key={books.isbn} className="item">
+            <div className="item_container">
+              <div className="item_box">
+                <img src={books.thumbnail} alt="something" />
               </div>
-              <h3>{test.title}</h3>
-              <p>{test.authors}</p>
-            </li>
-          </ul>
-        ))}
-      </Slider> */}
-      <div className="grid_test">
-        {steady.map((test: dataType, index) => (
-          <div className="item">
-            <div className="item_box">
-              <img src={test.thumbnail} alt="something" />
-            </div>
-
-            <div className="item_texts">
-              <h3>{test.title}</h3>
-              <p>{test.authors}</p>
-              <span>
-                <i className="ri-star-fill">{ratingRandomArray[index]}</i>
-                <span>{`(${reviewRandomArray[index]})`}</span>
-              </span>
+              <div className="item_texts">
+                <h3>{books.title}</h3>
+                <p>{books.authors}</p>
+                <span>
+                  <i className="ri-star-fill">{ratingRandomArray[index]}</i>
+                  <span>{`(${reviewRandomArray[index]})`}</span>
+                </span>
+              </div>
             </div>
           </div>
         ))}
-      </div>
+      </Slider>
+
+      {/* 이제 남은 것은 그리드 슬라이더인데 
+        what I have to solve 
+        1. 모바일때는 2줄, 태블릿부터는 3줄로 하는 것을 먼저 바인딩하는 것
+        2. 결과적으로 슬라이더는 모바일일때는 3번개의 슬라이더가 있어야함 들어가고 데스크탑에서는 2개다
+
+        그래서 페이지당 바인딩 되는 것을 어떻게 나눌 것인가가 핵심인데
+        
+      */}
     </SteadySeller>
   );
 }
