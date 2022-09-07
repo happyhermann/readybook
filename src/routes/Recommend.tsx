@@ -7,6 +7,7 @@ import "remixicon/fonts/remixicon.css";
 import Carousel from "../components/Carousel";
 import BestSellers from "../components/BestSellers";
 import PoliticBest from "../components/PoliticBest";
+import SteadySellers from "../components/SteadySellers";
 
 const RecommendBox = styled.div`
   position: relative;
@@ -285,6 +286,7 @@ export default function Recommend() {
         </Slider> */}
         <BestSellers />
         <PoliticBest />
+        <SteadySellers />
       </MainWrapper>
     </>
   );
