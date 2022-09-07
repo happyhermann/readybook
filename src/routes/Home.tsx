@@ -22,6 +22,12 @@ const Container = styled.div`
   z-index: 8000;
   background-color: white;
 
+  @media ${(props) => props.theme.mobile} {
+    main {
+      padding: 15px;
+    }
+  }
+
   @media ${(props) => props.theme.desktop} {
     main {
       padding: 0 100px;

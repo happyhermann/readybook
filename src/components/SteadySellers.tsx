@@ -20,6 +20,14 @@ const SteadySeller = styled.div`
 
   // pure grid test
 
+  margin-bottom: 35px;
+
+  .steady_title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
   align-items: stretch;
 
   .grid_test {
@@ -79,7 +87,11 @@ export default function SteadySellers() {
   const SEARCH_URL = "https://dapi.kakao.com/v3/search/book?target=title";
   const AUTH = "KakaoAK a8c449437a2e8ad317c59a7b97b40601";
 
-  const [steady, setSteady] = useState([]);
+  const [steady, setSteady] = useState<dataType[]>([]);
+
+  // overall = [], 전체적으로 합쳐질 배열 생성
+
+  // 자동으로 키워드를 바꿔서 계속해서 더해 줘야하나?
 
   // 평점 랜덤 값
 
@@ -91,7 +103,6 @@ export default function SteadySellers() {
     ratingRandomArray.push(fixedRandom);
   }
 
-  console.log(ratingRandomArray);
   // 리뷰수 랜덤 값
 
   let reviewRandomArray: number[] = [];
@@ -101,35 +112,92 @@ export default function SteadySellers() {
     reviewRandomArray.push(reviewRandom);
   }
 
-  console.log(reviewRandomArray);
+  // useEffect(() => {
+  //   axios
+  //     .get(SEARCH_URL, {
+  //       params: {
+  //         // 검색어
+  //         query: "사회",
+  //         size: 18,
+
+  //         // 필수아닌 검색 조건들
+
+  //         //결과 문서 정렬 방식
+  //         //sort	String	, accuracy(정확도순) 또는 latest(발간일순), 기본값 accuracy
+
+  //         //결과 페이지 번호
+  //         //page	Integer	, 1~50 사이의 값, 기본 값 1
+
+  //         //한 페이지에 보여질 문서 수
+  //         //size	Integer	, 1~50 사이의 값, 기본 값 10
+
+  //         //target	String	검색 필드 제한
+  //         //사용 가능한 값: title(제목), isbn (ISBN), publisher(출판사), person(인명)
+  //       },
+  //       headers: {
+  //         Authorization: AUTH,
+  //       },
+  //     })
+  //     .then((res) => setSteady(res.data.documents))
+  //     .catch((err) => console.log(err));
+  // }, []);
+
+  // axios 요청 여러개 해서 하나의 배열로 사용하게 하는 것
 
   useEffect(() => {
     axios
-      .get(SEARCH_URL, {
-        params: {
-          // 검색어
-          query: "사회",
-          size: 18,
+      .all([
+        axios.get(SEARCH_URL, {
+          params: {
+            query: "사회",
+            size: 6,
+          },
+          headers: {
+            Authorization: AUTH,
+          },
+        }),
+        axios.get(SEARCH_URL, {
+          params: {
+            query: "인문",
+            size: 6,
+          },
+          headers: {
+            Authorization: AUTH,
+          },
+        }),
+        axios.get(SEARCH_URL, {
+          params: {
+            query: "소설",
+            size: 6,
+          },
+          headers: {
+            Authorization: AUTH,
+          },
+        }),
+      ])
+      .then(
+        axios.spread((res1, res2, res3) => {
+          // console.log(res1, res2);
 
-          // 필수아닌 검색 조건들
+          console.log(
+            res1.data.documents,
+            res2.data.documents,
+            res3.data.documents
+          );
+          const test1 = res1.data.documents;
+          const test2 = res2.data.documents;
+          const test3 = res3.data.documents;
 
-          //결과 문서 정렬 방식
-          //sort	String	, accuracy(정확도순) 또는 latest(발간일순), 기본값 accuracy
+          const all = [...test1, ...test2, ...test3];
+          setSteady(all);
 
-          //결과 페이지 번호
-          //page	Integer	, 1~50 사이의 값, 기본 값 1
-
-          //한 페이지에 보여질 문서 수
-          //size	Integer	, 1~50 사이의 값, 기본 값 10
-
-          //target	String	검색 필드 제한
-          //사용 가능한 값: title(제목), isbn (ISBN), publisher(출판사), person(인명)
-        },
-        headers: {
-          Authorization: AUTH,
-        },
-      })
-      .then((res) => setSteady(res.data.documents))
+          // const res1 = res1.data;
+          // const res2 = res2.data;
+          // const res3 = res3.data;
+          // const res = [...res1, ...res2, ...res3];
+          // console.log(res);
+        })
+      )
       .catch((err) => console.log(err));
   }, []);
 
@@ -165,6 +233,7 @@ export default function SteadySellers() {
 
   return (
     <SteadySeller>
+      <h3 className="steady_title">스테디 셀러</h3>
       {/* <Slider {...settings}>
         {steady.map((test: dataType) => (
           <ul className="steady_list" key={test.datetime}>

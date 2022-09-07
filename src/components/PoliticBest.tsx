@@ -13,9 +13,12 @@ import { dataType } from "./BestSellers";
 
 const Politics = styled.div`
   position: relative;
+  margin-bottom: 35px;
+
   .best_title {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
+    margin-bottom: 10px;
   }
 
   .politic_list {

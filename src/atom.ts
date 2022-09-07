@@ -5,7 +5,7 @@ export const searchedAtom = atom({
   default: [],
 });
 
-export const filteredAtom = atom({
+export const filterAtom = atom<any>({
   key: "filter",
   default: [],
 });

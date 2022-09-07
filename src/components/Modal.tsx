@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import "remixicon/fonts/remixicon.css";
 
@@ -85,7 +85,7 @@ export default function Modal() {
           <h1>container</h1>
         </ModalBox>
       ) : (
-        <div>123</div>
+        <div></div>
       )}
     </>
   );

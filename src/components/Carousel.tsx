@@ -45,6 +45,24 @@ const Container = styled.div`
     }
   }
 
+  @media ${(props) => props.theme.mobile} {
+    .left {
+      font-size: 28px;
+      left: -14px;
+    }
+    .right {
+      font-size: 28px;
+      right: -14px;
+    }
+  }
+
+  .slider_img {
+    @media ${(props) => props.theme.mobile} {
+      width: 100%;
+      height: 350px;
+    }
+  }
+
   .sliderTextBox {
     position: absolute;
     bottom: 1%;
@@ -77,6 +95,13 @@ const Container = styled.div`
     line-height: 17px;
     background: rgba(0, 0, 0, 0.05);
   }
+
+  @media ${(props) => props.theme.mobile} {
+    .sliderPage {
+      transform: translate(86%, -10px);
+      font-size: 15px;
+    }
+  }
 `;
 
 const CarouselBox = styled.div<{ move: number }>`
@@ -87,6 +112,22 @@ const CarouselBox = styled.div<{ move: number }>`
   transform: ${(props) => `translatex(${props.move}vw)`};
   &:hover {
     cursor: pointer;
+  }
+  @media ${(props) => props.theme.mobile} {
+    height: 300px;
+
+    .sliderTextBox {
+      line-height: 25px;
+    }
+
+    .sliderTextTitle {
+      font-size: 16px;
+    }
+    .sliderTextSub {
+      font-size: 12px;
+      padding: 2px 35px;
+      text-overflow: ellipsis;
+    }
   }
 
   /* 클릭시 translate 움직이기 */
@@ -149,7 +190,7 @@ export default function Carousel() {
       id: 1,
       title: "레디페이퍼4",
       subtitle:
-        "미니멀 디자인의 RIDIPAPER 4는 시간, 공간, 그리고 당신의 감각까지 그대로 반영합니다.",
+        "미니멀 디자인의 RIDIPAPER 4는 당신의 감각까지 그대로 반영합니다.",
       img: "https://blog.kakaocdn.net/dn/U9nld/btrydzi6oWE/Tsc8QVBMAw1VK01oo5tEU1/img.png",
       url: "",
     },
@@ -174,7 +215,7 @@ export default function Carousel() {
       <CarouselBox move={move}>
         {slides.map((slide) => (
           <SliderBox>
-            <img src={slide.img} />
+            <img className="slider_img" src={slide.img} alt="슬라이더 이미지" />
             <div className="sliderTextBox">
               <h2 className="sliderTextTitle">{slide.title}</h2>
               <p className="sliderTextSub">{slide.subtitle}</p>

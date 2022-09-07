@@ -22,9 +22,16 @@ export interface dataType {
 }
 
 export const BestSeller = styled.div`
+
+margin-bottom  : 35px;
+// 박스 사이간격 margin-bottom
+
+
   .best_title {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
+    margin-bottom: 10px;
+
   }
 
   .novel_list {
