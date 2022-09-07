@@ -9,7 +9,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import { dataType } from "./BestSellers";
-
 import NextArrow from "./NextArrow";
 
 const SteadySeller = styled.div`
@@ -230,13 +229,15 @@ export default function SteadySellers() {
     slideToShow: 3,
     rows: 3,
     slidesPerRow: 2,
-    NextArrow: <NextArrow />,
+    arrow: true,
+    autoplay: true,
+    autoplaySpeed: 1500,
 
     responsive: [
       // 반응형 웹 구현 옵션
 
       {
-        breakpoint: 1900,
+        breakpoint: 2500,
         settings: {
           slideToShow: 9,
           slidesPerRow: 3,
