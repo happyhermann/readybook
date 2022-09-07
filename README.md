@@ -31,7 +31,7 @@
 
 
 #### 💻배포 주소
-> tempo
+> netlify : https://readybooks.netlify.app/
 
 
 
