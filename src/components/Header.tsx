@@ -98,8 +98,6 @@ export default function Header() {
   const [logout, setLogout] = useRecoilState(LoginState);
   const id = useRecoilValue(userState);
 
-  console.log(logout);
-
   const [tab, setTab] = useState(2);
   // 탭 컨트롤 state
 

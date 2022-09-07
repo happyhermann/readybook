@@ -240,9 +240,23 @@ const Footers = styled.div`
   }
 `;
 
+const FooterHr = styled.div`
+  hr {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: #f0f0f0;
+    border: none;
+  }
+  margin-bottom: 35px;
+`;
+
 export default function Footer() {
   return (
     <Footers>
+      <FooterHr>
+        <hr />
+      </FooterHr>
       <div className="listWrapper">
         <ul className="listUl">
           <li className="customer">

@@ -250,7 +250,7 @@ export default function Search() {
       .catch((err) => console.log(err));
   }, []);
 
-  console.log(searched);
+  // console.log(searched);
 
   const onSubmit = (e: any) => {
     e.preventDefault();

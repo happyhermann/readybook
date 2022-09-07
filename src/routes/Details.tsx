@@ -603,16 +603,16 @@ export default function Details(props: any) {
 
   let { id } = useParams();
   const [isTrue, setIsTrue] = useState(false);
-  console.log(mockUp);
+  // console.log(mockUp);
 
-  console.log(id);
+  // console.log(id);
 
   const filterValue = useRecoilValue<any>(filterAtom);
 
   let findBook = filterValue.find((books: any) => {
     return books.datetime == id;
   });
-  console.log(findBook);
+  // console.log(findBook);
 
   console.log(findBook.translators[0]);
   useEffect(() => {
