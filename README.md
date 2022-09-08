@@ -19,7 +19,6 @@
  <img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white">
  <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=white">
  <img src="https://img.shields.io/badge/redux-61DAFB?style=for-the-badge&logo=redux&logoColor=white">
-
  <img src="https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white">
  
  </figure>
@@ -27,6 +26,7 @@
 ### 📚*라이브러리*
 <hr/>
 <img src="https://img.shields.io/badge/-axios-lightgrey" />
+<img src="https://img.shields.io/badge/-recoil--persist-lightgrey" />
 <img src="https://img.shields.io/badge/-%20remixicon-lightgrey" />
 <img src="https://img.shields.io/badge/-react--router--dom-lightgrey" />
 
