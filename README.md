@@ -42,9 +42,10 @@
 
 
 
-#### 전역적 상태값 관리 
+#### 전역적 코드 관리 
 
-Recoil, Recoil-persist를 사용하여 API, 데이터 등을 전역적으로 관리 
+상태값 : Recoil, Recoil-persist를 사용하여 API, 데이터 등 상태값 전역적으로 관리 
+CSS 스타일링 : Typescript + Styled-components 조합을 사용하여 프로젝트 웹 고유 색상, 배경색상, breakpoint, 패딩 값 같은 공통 스타일을 지정후 일관된 스타일링을 유지
 
 
 <hr/>
