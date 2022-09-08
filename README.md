@@ -41,10 +41,49 @@
 1. 페이지 구조 
 
 
+
+
+
+
 #### 반응형 마크업
 
 <img src="https://user-images.githubusercontent.com/92570023/189014449-c1fdb29c-120f-4245-aecc-75a7ac6a0926.gif" width="600px" height="400px" />
 
+  > 부트스트랩이나 MUI같은 라이브러리 없이 순수 HTML 태그와 CSS로 구현 (+ styled-components 기반)
+
+  > styled-components의 theme.ts에 mobile, desktop, fullSize breakpoint 세팅 => props로 미디어 쿼리 적용
+
+  > 모바일, 데스크탑, 풀 사이즈 순으로 반응형 디자인 레이아웃 구현 (리디북스 사이트와 유사하게)
+ 
+ 
+
+
+#### 홈화면 캐러셀 / 키워드 도서 배열 
+
+<img src="https://user-images.githubusercontent.com/92570023/189014880-f3d0be9d-84d0-4741-bb37-2ab88ab010ac.gif" width="600px" height="400px" alt="carousel" />
+
+ > React-slick 라이브러리 사용하여 홈화면 도서 추천 / 스테디 셀러 캐러셀 구현 
+ > slick 라이브러리의 장점은 자체 기능에 breakpoint를 임의로 세팅하고 각 point에 row는 몇개를 줄지, 몇개의 아이템을 
+   보여줄 것인지 설정할 수 있게 함으로써 반응형 캐러셀을 간단히 다룰 수 있게 해줌 
+   
+ > + 가장 위 캐러셀은 라이브러리 없이 useState, styled-components, 자바스크립트로 구현 
+
+
+캐러셀에 
+ <pre>
+<code>
+
+1. 캐러셀에 나열된 도서 데이터들은 axios GET으로 호출할 때 axios.all을 사용하여 6개의 인기 도서 키워드를 
+query에 넣어서 3개씩 받아오도록 세팅 
+
+2. Response 받은 데이터를 axios.spread를 사용하여 받고, spread 연산자를 이용하여 배열 병합 후 setState 함수에 인자로 넣어줌 
+
+3. 인기 도서 데이터 18개가 합쳐서 하나의 배열을 map을 사용하여 캐러셀에 리스트화 시켜줌 
+
+ 
+
+</code>
+</pre>
 
 
 
@@ -83,9 +122,6 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/login
 
 
 
-
-
-#### 홈화면 캐러셀 / 키워드 도서 배열 
 
 
 
