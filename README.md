@@ -58,6 +58,7 @@
  
  
 
+<hr/>
 
 
 
@@ -86,6 +87,7 @@ query에 넣어서 3개씩 받아오도록 세팅
 
 
 
+<hr/>
 
 
 
@@ -129,6 +131,7 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/login
 => **API 통신이나 로그인, 로그아웃, 회원가입 자체는 되는 것으로 확인 
 
 
+<hr/>
 
 
 
