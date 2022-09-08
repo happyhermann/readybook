@@ -43,6 +43,9 @@
 
 
 
+#### 전역적 상태값 관리 
+
+Recoil, Recoil-persist를 사용하여 API, 데이터 등을 전역적으로 관리 
 
 
 
