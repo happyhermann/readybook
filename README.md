@@ -43,10 +43,16 @@
 
 #### 반응형 마크업
 
+<img src="https://user-images.githubusercontent.com/92570023/189014449-c1fdb29c-120f-4245-aecc-75a7ac6a0926.gif" width="600px" height="400px" />
+
+
+
+
+
 
 #### 로그인 & 회원가입
 
- <img src="https://user-images.githubusercontent.com/92570023/188264544-1d087f64-890d-404f-b622-c33935cf280b.gif" width="600px" height="400px" title="" alt="RubberDuck"></img><br/>
+ <img src="https://user-images.githubusercontent.com/92570023/188264544-1d087f64-890d-404f-b622-c33935cf280b.gif" width="600px" height="400px" title="" alt="SignUp/In"></img><br/>
  
  
  
@@ -79,10 +85,9 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/login
 
 
 
+#### 홈화면 캐러셀 / 키워드 도서 배열 
 
 
-
-#### 홈화면
 
 
 
@@ -122,6 +127,7 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/login
  > 입력값에 해당하는 도서가 없을 경우 '검색결과 없습니다'라는 배너 사용자에게 보여줌
 
  > 리스트내 도서 클릭시 해당 도서 상세 페이지로 링크 연결 
+ 
  
  
 
