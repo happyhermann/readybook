@@ -29,7 +29,6 @@
 <img src="https://img.shields.io/badge/-recoil--persist-lightgrey" />
 <img src="https://img.shields.io/badge/-%20remixicon-lightgrey" />
 <img src="https://img.shields.io/badge/-react--router--dom-lightgrey" />
-<img src="https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white"/>
 
 
 
